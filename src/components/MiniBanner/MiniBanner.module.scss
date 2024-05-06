@@ -1,0 +1,11 @@
+@import '../../styles/_variables.scss';
+@import '../../styles/_breakpoints.scss';
+
+.miniBanner {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  width: 100%;
+  height: 100px;
+  padding: 40px $padding-horizontal-desktop;
+}

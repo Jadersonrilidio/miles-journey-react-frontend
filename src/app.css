@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&display=swap');
+
+/*
+ * Here is defined all App default styles and imports, as well as the #root element styles.
+ */
+
+* {
+  box-sizing: border-box;
+}
+
+#root {
+  width: 100vw;
+  max-width: 100%;
+  height: 100%;
+}

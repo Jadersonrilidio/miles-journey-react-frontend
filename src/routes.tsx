@@ -1,11 +1,20 @@
 import { Routes, Route } from 'react-router-dom';
-import ExampleComponent from './components/ExampleComponent';
+import { Suspense, lazy } from "react";
+import Template from './pages/Template';
+
+const Home = lazy(() => import('./pages/Home'));
+const Destination = lazy(() => import('./pages/Destination'));
 
 function AppRoutes() {
   return (
-    <Routes>
-      <Route path="/" element={<ExampleComponent />} />
-    </Routes>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Routes>
+        <Route path="/" element={<Template />}>
+          <Route index element={<Home />} />
+          <Route path="destination/:uuid" element={<Destination />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 }
 

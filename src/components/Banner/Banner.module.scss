@@ -1,0 +1,27 @@
+@import '../../styles/_variables.scss';
+@import '../../styles/_breakpoints.scss';
+
+.banner {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  width: 100%;
+  height: 400px;
+  padding: 40px $padding-horizontal-desktop;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+
+  p {
+    max-width: 488px;
+    font-size: 45px;
+    font-weight: 400;
+    line-height: 52px;
+    color: $white;
+
+    strong {
+      font-weight: 600;
+    }
+  }
+}

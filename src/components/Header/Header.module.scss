@@ -1,0 +1,69 @@
+@import '../../styles/_breakpoints.scss';
+@import '../../styles/_variables.scss';
+
+.header {
+  background-color: $dark;
+  width: 100%;
+  padding: 16px $padding-horizontal-desktop;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  img {
+    width: 162px;
+    cursor: pointer;
+  }
+
+  .navContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 40px;
+  }
+
+  .navlink {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    color: $white;
+    line-height: 24px;
+  }
+
+  .menuContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+
+    .user {
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+    }
+
+    .btnPrimary {
+      border-radius: 5px;
+      border: 1px solid $primary;
+      padding: 10px 24px;
+      background-color: $primary;
+      color: $white;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 10px;
+      cursor: pointer;
+    }
+
+    .btnSecondary {
+      border-radius: 5px;
+      border: 1px solid $gray-medium;
+      padding: 10px 24px;
+      background-color: transparent;
+      color: $primary;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 10px;
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+@import '../../styles/_breakpoints.scss';
+@import '../../styles/_variables.scss';
+
+.container {
+  width: 100%;
+  padding: 40px $padding-horizontal-desktop;
+  background-color: $white-total;
+  color: $dark;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
