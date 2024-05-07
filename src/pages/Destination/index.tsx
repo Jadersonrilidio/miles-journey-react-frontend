@@ -3,31 +3,15 @@ import { useParams } from "react-router-dom";
 import destinationBannerPng from '../../assets/images/banner_destiny.png';
 import MiniBanner from "../../components/MiniBanner";
 import Container from "../../components/Container";
-import { useEffect, useState } from 'react';
-import IDestination from '../../interfaces/IDestination';
-import http from '../../http';
-import APIResponseSchema from '../../interfaces/APIResponseSchema';
+import { useEffect } from 'react';
+import useDestinations from '../../state/hooks/useDestinations';
 
 const Destination: React.FC = () => {
-  const [destination, setDestination] = useState<IDestination | null>(null);
   const { uuid } = useParams();
+  const { destination, getDestinationByUuid } = useDestinations();
 
   useEffect(() => {
-    http.get<APIResponseSchema<IDestination>>(`destinations/${uuid}`)
-      .then(response => {
-        if (response.data.data) {
-          const rawData = response.data.data;
-
-          setDestination({
-            ...rawData,
-            photo_1: `http://localhost:8000/${rawData.photo_1}`,
-            photo_2: rawData.photo_2 && `http://localhost:8000/${rawData.photo_2}`,
-          });
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    getDestinationByUuid(uuid!);
   }, []);
 
   return (

@@ -1,9 +1,11 @@
 import axios from "axios";
-
-const baseUrl: string = 'http://localhost:8000/api';
+import {
+  REACT_APP_BASE_API_URL,
+  REACT_APP_STORAGE_ACCESS_TOKEN_KEY
+} from "../../globals.ts";
 
 const http = axios.create({
-  baseURL: baseUrl,
+  baseURL: REACT_APP_BASE_API_URL,
   headers: {
     "Accept": "application/json",
     "Content-Type": "application/json",
@@ -11,7 +13,7 @@ const http = axios.create({
 });
 
 http.interceptors.request.use(config => {
-  const accessToken = sessionStorage.getItem('access_token');
+  const accessToken = sessionStorage.getItem(REACT_APP_STORAGE_ACCESS_TOKEN_KEY);
   if (accessToken && config.headers) {
     config.headers.Authorization = `Bearer ${accessToken}`;
   }

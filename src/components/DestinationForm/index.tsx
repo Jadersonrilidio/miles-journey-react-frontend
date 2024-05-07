@@ -1,17 +1,25 @@
 import styles from './DestinationForm.module.scss';
 import searchIconPng from '../../assets/icons/search.png';
+import useDestinationFilter from '../../state/hooks/useDestinationFilter';
+import { useState } from 'react';
 
-interface DestinationFormProps {
-  onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void
-}
+const DestinationForm: React.FC = () => {
+  const [search, setSearch] = useState<string>('');
+  const { applyFilter } = useDestinationFilter();
 
-const DestinationForm: React.FC<DestinationFormProps> = ({ onSubmit }: DestinationFormProps) => {
+  const onSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (search.length > 0) {
+      applyFilter(search);
+    }
+  };
+
   return (
-    <form className={styles.formContainer} onSubmit={onSubmit}>
+    <form className={styles.formContainer} onSubmit={onSubmitForm}>
       <h2>Select your next destination:</h2>
       <div className={styles.formGroup}>
         <div className={styles.inputGroup}>
-          <input type="text" placeholder="Origin" />
+          <input type="text" placeholder="Origin" value={search} onChange={event => setSearch(event.target.value)} />
           <img src={searchIconPng} alt="search icon" />
         </div>
         <button type="submit">SEARCH</button>
