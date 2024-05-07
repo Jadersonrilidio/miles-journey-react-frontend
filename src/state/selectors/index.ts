@@ -4,7 +4,7 @@ import IDestination from "../../interfaces/IDestination";
 import http from "../../http";
 import APIResponseSchema from "../../interfaces/APIResponseSchema";
 import IReview from "../../interfaces/IReview";
-import { REACT_APP_BASE_SERVER_URL } from "../../../globals";
+import { REACT_APP_BASE_URL } from "../../../globals";
 
 export const filteredDestinationsState = selector<IDestination[]>({
   key: 'filteredDestinationsState',
@@ -34,8 +34,8 @@ export const destinationsAsync = selector<IDestination[]>({
       const loadedDestinations = response.data.data.map(destination => {
         return {
           ...destination,
-          photo_1: REACT_APP_BASE_SERVER_URL + `/${destination.photo_1}`,
-          photo_2: destination.photo_2 && REACT_APP_BASE_SERVER_URL + `/${destination.photo_2}`,
+          photo_1: REACT_APP_BASE_URL + `/${destination.photo_1}`,
+          photo_2: destination.photo_2 && REACT_APP_BASE_URL + `/${destination.photo_2}`,
         }
       });
 
@@ -57,7 +57,7 @@ export const reviewsAsync = selector<IReview[]>({
       const loadedReviews = response.data.data.map(review => {
         return {
           ...review,
-          picture: REACT_APP_BASE_SERVER_URL + `/${review.picture}`,
+          picture: REACT_APP_BASE_URL + `/${review.picture}`,
         }
       });
 

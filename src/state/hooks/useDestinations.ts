@@ -4,7 +4,7 @@ import APIResponseSchema from "../../interfaces/APIResponseSchema";
 import IDestination from "../../interfaces/IDestination";
 import { destinationState, destinationsState } from "../atom";
 import { filteredDestinationsState } from "../selectors";
-import { REACT_APP_BASE_SERVER_URL } from "../../../globals";
+import { REACT_APP_BASE_URL } from "../../../globals";
 
 const useDestinations = () => {
   const [destinations, setDestinations] = useRecoilState(destinationsState);
@@ -18,8 +18,8 @@ const useDestinations = () => {
           setDestinations(response.data.data.map(destination => {
             return {
               ...destination,
-              photo_1: REACT_APP_BASE_SERVER_URL + `/${destination.photo_1}`,
-              photo_2: destination.photo_2 && REACT_APP_BASE_SERVER_URL + `/${destination.photo_2}`,
+              photo_1: REACT_APP_BASE_URL + `/${destination.photo_1}`,
+              photo_2: destination.photo_2 && REACT_APP_BASE_URL + `/${destination.photo_2}`,
             }
           }));
         }
@@ -41,8 +41,8 @@ const useDestinations = () => {
 
           loadedDestination = {
             ...loadedDestination,
-            photo_1: REACT_APP_BASE_SERVER_URL + `/${loadedDestination.photo_1}`,
-            photo_2: loadedDestination.photo_2 && REACT_APP_BASE_SERVER_URL + `/${loadedDestination.photo_2}`,
+            photo_1: REACT_APP_BASE_URL + `/${loadedDestination.photo_1}`,
+            photo_2: loadedDestination.photo_2 && REACT_APP_BASE_URL + `/${loadedDestination.photo_2}`,
           };
 
           setDestination(loadedDestination);

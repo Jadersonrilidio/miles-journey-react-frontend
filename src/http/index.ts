@@ -1,11 +1,11 @@
 import axios from "axios";
 import {
-  REACT_APP_BASE_API_URL,
+  REACT_APP_API_URL,
   REACT_APP_STORAGE_ACCESS_TOKEN_KEY
 } from "../../globals.ts";
 
 const http = axios.create({
-  baseURL: REACT_APP_BASE_API_URL,
+  baseURL: REACT_APP_API_URL,
   headers: {
     "Accept": "application/json",
     "Content-Type": "application/json",
