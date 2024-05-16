@@ -20,6 +20,13 @@
     align-items: center;
     justify-content: flex-start;
     gap: 40px;
+
+    .navText {
+      font-size: 14px;
+      font-weight: 400;
+      color: $gray-medium;
+      line-height: 20px;
+    }
   }
 
   .navlink {
@@ -39,6 +46,8 @@
     .user {
       width: 40px;
       height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
       cursor: pointer;
     }
 

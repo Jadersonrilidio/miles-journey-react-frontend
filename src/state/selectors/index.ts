@@ -4,7 +4,8 @@ import IDestination from "../../interfaces/IDestination";
 import http from "../../http";
 import APIResponseSchema from "../../interfaces/APIResponseSchema";
 import IReview from "../../interfaces/IReview";
-import { REACT_APP_BASE_URL } from "../../../globals";
+import { REACT_APP_BASE_URL, REACT_APP_STORAGE_ACCESS_TOKEN_KEY } from "../../../globals";
+import IUser from "../../interfaces/IUser";
 
 export const filteredDestinationsState = selector<IDestination[]>({
   key: 'filteredDestinationsState',
@@ -28,18 +29,22 @@ export const destinationsAsync = selector<IDestination[]>({
   get: async () => {
     const destinations: IDestination[] = [];
 
-    const response = await http.get<APIResponseSchema<IDestination[]>>('/destinations');
+    try {
+      const response = await http.get<APIResponseSchema<IDestination[]>>('/destinations');
 
-    if (response.data.data) {
-      const loadedDestinations = response.data.data.map(destination => {
-        return {
-          ...destination,
-          photo_1: REACT_APP_BASE_URL + `/${destination.photo_1}`,
-          photo_2: destination.photo_2 && REACT_APP_BASE_URL + `/${destination.photo_2}`,
-        }
-      });
+      if (response.data.data) {
+        const loadedDestinations = response.data.data.map(destination => {
+          return {
+            ...destination,
+            photo_1: REACT_APP_BASE_URL + `/${destination.photo_1}`,
+            photo_2: destination.photo_2 && REACT_APP_BASE_URL + `/${destination.photo_2}`,
+          }
+        });
 
-      destinations.push(...loadedDestinations);
+        destinations.push(...loadedDestinations);
+      }
+    } catch (error: any) {
+      console.log(error);
     }
 
     return destinations;
@@ -51,19 +56,45 @@ export const reviewsAsync = selector<IReview[]>({
   get: async () => {
     const reviews: IReview[] = [];
 
-    const response = await http.get<APIResponseSchema<IReview[]>>('/reviews');
+    try {
+      const response = await http.get<APIResponseSchema<IReview[]>>('/reviews');
 
-    if (response.data.data) {
-      const loadedReviews = response.data.data.map(review => {
-        return {
-          ...review,
-          picture: REACT_APP_BASE_URL + `/${review.picture}`,
-        }
-      });
+      if (response.data.data) {
+        const loadedReviews = response.data.data.map(review => {
+          return {
+            ...review,
+            picture: REACT_APP_BASE_URL + `/${review.picture}`,
+          }
+        });
 
-      reviews.push(...loadedReviews);
+        reviews.push(...loadedReviews);
+      }
+    } catch (error: any) {
+      console.log(error);
     }
 
     return reviews;
   },
-})
+});
+
+export const userAsync = selector<IUser | undefined>({
+  key: 'userAsync',
+  get: async () => {
+    if (!sessionStorage.getItem(REACT_APP_STORAGE_ACCESS_TOKEN_KEY)) {
+      return undefined;
+    }
+
+    try {
+      const response = await http.get<IUser>('/auth/me');
+
+      return {
+        ...response.data,
+        picture: response.data.picture ? REACT_APP_BASE_URL + `/${response.data.picture}` : null,
+      } as IUser;
+    } catch (error: any) {
+      console.log(error);
+    }
+
+    return undefined;
+  },
+});

@@ -1,0 +1,92 @@
+@import '../../../styles/_variables.scss';
+@import '../../../styles/_breakpoints.scss';
+
+.form {
+  min-width: 500px;
+  background-color: #F5F5F5;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 32px;
+
+  .formTitle {
+    font-size: 32px;
+    line-height: 40px;
+    color: $dark;
+  }
+
+  .errorMsg {
+    font-style: italic;
+    color: $error;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .formInput {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 8px;
+
+
+    label {
+      font-size: 16px;
+      line-height: 20px;
+      color: $dark;
+    }
+
+    input {
+      background-color: $white-total;
+      border: 1px solid $gray-medium;
+      border-radius: 5px;
+      padding: 8px 16px;
+      width: 100%;
+      font-size: 16px;
+      line-height: 20px;
+      color: $dark;
+
+      &::placeholder {
+        color: $gray-medium;
+      }
+
+      &:focus {
+        border: 1px solid $primary;
+        box-shadow: 0 0 4px 0 rgba($color: $primary, $alpha: .95);
+        outline: none;
+      }
+    }
+  }
+
+  .formGroup {
+    width: 100%;
+    padding-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+
+    .formBtn {
+      border-radius: 5px;
+      border: 1px solid $primary;
+      padding: 10px 24px;
+      background-color: $primary;
+      color: $white;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 10px;
+      cursor: pointer;
+    }
+
+    a {
+      color: $gray-medium;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
+}
