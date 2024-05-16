@@ -85,12 +85,12 @@ export const userAsync = selector<IUser | undefined>({
     }
 
     try {
-      const response = await http.get<IUser>('/auth/me');
+      const response = await http.get<APIResponseSchema<IUser>>('/auth/me');
 
-      return {
-        ...response.data,
-        picture: response.data.picture ? REACT_APP_BASE_URL + `/${response.data.picture}` : null,
-      } as IUser;
+      return (response.data.data ? {
+        ...response.data.data,
+        picture: response.data.data.picture ? REACT_APP_BASE_URL + `/${response.data.data.picture}` : null,
+      } as IUser : undefined);
     } catch (error: any) {
       console.log(error);
     }
