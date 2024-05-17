@@ -9,21 +9,27 @@ const useAuth = () => {
   const [auth, setAuth] = useRecoilState(authenticationState);
   const [user, setUser] = useRecoilState(userState);
 
-  const register = async (username: string, email: string, password: string): Promise<boolean> => {
+  const register = async (username: string, email: string, password: string, file: File | null): Promise<boolean> => {
+    const config = {
+      headers: { 'Content-Type': 'multipart/form-data' }
+    };
+
     const formData = new FormData();
     formData.append('name', username);
     formData.append('email', email);
     formData.append('password', password);
 
-    try {
-      const response = await http.post<APIResponseSchema<any>>('/auth/register', formData);
+    if (file) {
+      formData.append("picture", file);
+    }
 
-      if (response.data.data.access_token) {
-        persistToken(response.data.data.access_token);
-        getUserData();
-        return true;
-      }
-    } catch (error: any) {
+    try {
+      const response = await http.post<APIResponseSchema<any>>('/auth/register', formData, config);
+
+      persistToken(response.data.data.access_token);
+      getUserData();
+      return true;
+    } catch (error) {
       console.log(error);
     }
 
@@ -38,12 +44,10 @@ const useAuth = () => {
     try {
       const response = await http.post<APIResponseSchema<any>>('/auth/login', formData);
 
-      if (response.data.data.access_token) {
-        persistToken(response.data.data.access_token);
-        getUserData();
-        return true;
-      }
-    } catch (error: any) {
+      persistToken(response.data.data.access_token);
+      getUserData();
+      return true;
+    } catch (error) {
       console.log(error);
     }
 

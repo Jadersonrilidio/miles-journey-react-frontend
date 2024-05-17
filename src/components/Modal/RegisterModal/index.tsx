@@ -15,20 +15,19 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ open, onClose, onOpenLogi
   const [username, setUsername] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [picture, setPicture] = useState<File | null>(null);
+
   const [passwordConfirm, setPasswordConfirm] = useState<string>('');
   const [usernameError, setUsernameError] = useState<string | null>(null);
   const [emailError, setEmailError] = useState<string | null>(null);
   const [passwordError, setPasswordError] = useState<string | null>(null);
   const [passwordConfirmError, setPasswordConfirmError] = useState<string | null>(null);
   const [messageError, setMessageError] = useState<string | null>(null);
+  const [pictureError, setPictureError] = useState<string | null>(null);
 
   const handleRegister = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setMessageError(null);
-    setUsernameError(null);
-    setEmailError(null);
-    setPasswordError(null);
-    setPasswordConfirmError(null);
+    resetErrorMessages();
 
     if (username.trim() === '') {
       setUsernameError('name cannot be empty');
@@ -60,31 +59,56 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ open, onClose, onOpenLogi
       return;
     }
 
-    const result = await register(username, email, password);
+    const result = await register(username, email, password, picture);
 
     if (result) {
       handleClose();
     } else {
-      setMessageError('invalid email or password');
+      setMessageError('an error occurried. Please check your email and data again');
     }
   };
 
   const handleClose = () => {
+    resetInputValues();
+    resetErrorMessages();
+    onClose();
+  };
+
+  const resetInputValues = () => {
     setUsername('');
     setEmail('');
     setPassword('');
     setPasswordConfirm('');
+    setPicture(null);
+  };
+
+  const resetErrorMessages = () => {
     setMessageError(null);
     setUsernameError(null);
     setEmailError(null);
     setPasswordError(null);
     setPasswordConfirmError(null);
-    onClose();
+    setPictureError(null);
   };
 
   const handleOpenLoginModal = () => {
     handleClose();
     onOpenLogin();
+  };
+
+  const onUploadFile = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPictureError(null);
+    const file = event.target.files ? event.target.files[0] : null;
+
+    if (file) {
+      const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+
+      if (allowedTypes.includes(file.type)) {
+        setPicture(file);
+      } else {
+        setPictureError('invalid file format');
+      }
+    }
   };
 
   return (
@@ -110,6 +134,12 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ open, onClose, onOpenLogi
           <label htmlFor="">Password</label>
           <input type="password" placeholder='password' value={password} onChange={event => setPassword(event.target.value)} />
           {passwordError && (<p className={styles.errorMsg}>* {passwordError}</p>)}
+        </div>
+
+        <div className={styles.formInput}>
+          <label htmlFor="">Profile picture</label>
+          <input type="file" placeholder='formats: png, jpg, jpeg' accept='image/jpeg, image/jpg, image/png' onChange={onUploadFile} />
+          {pictureError && (<p className={styles.errorMsg}>* {pictureError}</p>)}
         </div>
 
         <div className={styles.formInput}>
