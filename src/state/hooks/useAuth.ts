@@ -9,7 +9,7 @@ const useAuth = () => {
   const [auth, setAuth] = useRecoilState(authenticationState);
   const [user, setUser] = useRecoilState(userState);
 
-  const register = async (username: string, email: string, password: string, file: File | null): Promise<boolean> => {
+  const register = async (username: string, email: string, password: string, file: string | File | null): Promise<boolean> => {
     const config = {
       headers: { 'Content-Type': 'multipart/form-data' }
     };
