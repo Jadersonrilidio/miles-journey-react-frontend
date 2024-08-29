@@ -23,8 +23,6 @@ const useAuth = () => {
       formData.append("picture", file);
     }
 
-    console.log(Array.from(formData));
-
     try {
       const response = await http.post<APIResponseSchema<any>>('/auth/register', formData, config);
 
