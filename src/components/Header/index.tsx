@@ -11,8 +11,6 @@ const Header: React.FC = () => {
   const { auth, user, logout } = useAuth();
   const navigate = useNavigate();
 
-  console.log(user);
-
   const [loginModal, setLoginModal] = useState<boolean>(false);
   const [registerModal, setRegisterModal] = useState<boolean>(false);
 

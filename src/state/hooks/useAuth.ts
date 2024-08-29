@@ -30,7 +30,7 @@ const useAuth = () => {
       getUserData();
       return true;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
 
     return false;
@@ -48,7 +48,7 @@ const useAuth = () => {
       getUserData();
       return true;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
 
     return false;
@@ -68,7 +68,7 @@ const useAuth = () => {
         } as IUser : undefined);
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
   };
 

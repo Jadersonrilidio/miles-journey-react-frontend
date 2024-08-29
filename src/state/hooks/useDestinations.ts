@@ -23,8 +23,7 @@ const useDestinations = () => {
             }
           }));
         }
-      })
-      .catch(error => console.log(error));
+      });
   };
 
   const getDestinationByUuid = (uuid: string): void => {
@@ -48,8 +47,7 @@ const useDestinations = () => {
           setDestination(loadedDestination);
           setDestinations([...destinations, loadedDestination]);
         }
-      })
-      .catch(error => console.log(error));
+      });
   };
 
   return {
