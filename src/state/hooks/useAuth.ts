@@ -29,9 +29,7 @@ const useAuth = () => {
       persistToken(response.data.data.access_token);
       getUserData();
       return true;
-    } catch (error) {
-      // console.log(error);
-    }
+    } catch (error) {}
 
     return false;
   };
@@ -47,9 +45,7 @@ const useAuth = () => {
       persistToken(response.data.data.access_token);
       getUserData();
       return true;
-    } catch (error) {
-      // console.log(error);
-    }
+    } catch (error) {}
 
     return false;
   };
@@ -66,9 +62,6 @@ const useAuth = () => {
           ...response.data.data,
           picture: response.data.data.picture ? REACT_APP_BASE_URL + `/${response.data.data.picture}` : null,
         } as IUser : undefined);
-      })
-      .catch(error => {
-        // console.log(error);
       });
   };
 

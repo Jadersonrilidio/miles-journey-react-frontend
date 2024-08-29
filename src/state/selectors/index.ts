@@ -43,9 +43,7 @@ export const destinationsAsync = selector<IDestination[]>({
 
         destinations.push(...loadedDestinations);
       }
-    } catch (error: any) {
-      // console.log(error);
-    }
+    } catch (error: any) {}
 
     return destinations;
   },
@@ -69,9 +67,7 @@ export const reviewsAsync = selector<IReview[]>({
 
         reviews.push(...loadedReviews);
       }
-    } catch (error: any) {
-      // console.log(error);
-    }
+    } catch (error: any) {}
 
     return reviews;
   },
@@ -91,9 +87,7 @@ export const userAsync = selector<IUser | undefined>({
         ...response.data.data,
         picture: response.data.data.picture ? REACT_APP_BASE_URL + `/${response.data.data.picture}` : null,
       } as IUser : undefined);
-    } catch (error: any) {
-      // console.log(error);
-    }
+    } catch (error: any) {}
 
     return undefined;
   },
