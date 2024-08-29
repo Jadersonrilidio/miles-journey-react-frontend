@@ -59,14 +59,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ open, onClose, onOpenLogi
       return;
     }
 
-    let pictureKey: string | null = null;
-
-    if (picture) {
-      // const s3Response = await Vapor.store(picture);
-      // pictureKey = s3Response.key;
-    }
-
-    const result = await register(username, email, password, pictureKey);
+    const result = await register(username, email, password, picture);
 
     if (result) {
       handleClose();
