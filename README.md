@@ -1,4 +1,4 @@
-# MILES JOURNEY - FRONTEND REPOSITORY
+# Miles Journey - Frontend Repository
 
 <p align="center"><a href="https://miles-journey-react-frontend.vercel.app/" target="_blank"><img src="https://raw.githubusercontent.com/Jadersonrilidio/miles-journey-react-frontend/master/src/assets/logos/logo-black-tagline.png" width="500" alt="Logo Dark" /></a></p>
 
