@@ -1,6 +1,6 @@
 # MILES JOURNEY - FRONTEND REPOSITORY
 
-<p align="center"><a href="https://miles-journey-react-frontend.vercel.app/" target="_blank"><img src="https://raw.githubusercontent.com/Jadersonrilidio/miles-journey-react-frontend/master/src/assets/logos/logo-black-tagline.png" width="300" alt="Logo Dark" /></a></p>
+<p align="center"><a href="https://miles-journey-react-frontend.vercel.app/" target="_blank"><img src="https://raw.githubusercontent.com/Jadersonrilidio/miles-journey-react-frontend/master/src/assets/logos/logo-black-tagline.png" width="500" alt="Logo Dark" /></a></p>
 
 <p align="center"><img src="https://img.shields.io/badge/license-MIT-blue" alt="License" /></p>
 
