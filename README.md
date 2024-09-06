@@ -35,7 +35,7 @@ In this Challenge, you will:
 
 - **Backend:** Laravel 10, PHP 8.2
 - **Database:** PostgreSQL
-- **Authentication:** JWT
+- **Authentication:** Laravel Sanctum Access token
 
 - **Version Control:** Git and GitHub
 
@@ -58,7 +58,7 @@ Here follows the frontend project's folder structure:
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [MIT License](./LICENSE) file for details.
 
 
 ## Contact information
