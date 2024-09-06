@@ -32,13 +32,10 @@ In this Challenge, you will:
 - **Styling:** Raw CSS/SASS modules
 - **State Mangement:** Recoil
 - **HTTP Client:** Axios
-
 - **Backend:** Laravel 10, PHP 8.2
 - **Database:** PostgreSQL
 - **Authentication:** Laravel Sanctum Access token
-
 - **Version Control:** Git and GitHub
-
 - **Backend Deployment:** Laravel Render
 - **Frontend Deployment:** Vercel Vite
 
